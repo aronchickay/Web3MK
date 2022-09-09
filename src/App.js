@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import {Box, Button, Flex, Heading, Spacer} from "@chakra-ui/react";
+import {useAccount} from "wagmi";
 
 function App() {
+  const { isConnected } = useAccount();
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Flex minWidth='max-content' alignItems='center' gap='2'>
+        <Box p='2'>
+          <Heading ml={'64px'} size='md' color={'white'} >Decentralized Web3 Markdown Platform</Heading>
+        </Box>
+        <Spacer />
+        <Flex px={"4em"} py={"1.5em"} justifyContent={"flex-end"}>
+          <ConnectButton />
+          {isConnected && <Button mx={'2em'} colorScheme='yellow' >Write Markdown</Button>}
+        </Flex>
+      </Flex>
     </div>
   );
 }
