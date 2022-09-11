@@ -1,6 +1,16 @@
 import {Client, createUserAuth, PrivateKey, ThreadID, Where} from "@textile/hub";
 import * as C from "./constants"
 
+/// can also use init
+const UserInfoSchema ={
+    _id: '',
+    identity:"",
+    name:"",
+    icon:"",
+    filAddress:"",
+    likeId:"",
+    web3:""
+}
 
 const schema = {
     identity: "",
@@ -35,8 +45,8 @@ export const auth = async (userIdentity) => {
     }
 
     const keyInfo = {
-        key: "bhtmaiyqclqj6pw5lmyskkdy7iq",
-        secret:"bbfg3irdoe4ibswuszofgfr5gnn6nunjgxxjrdxq"
+        key: "bnjau4mh6k3xf6cilgbqodi5b6i",
+        secret:"bktx4rel47b73sut7xmnr54g4n6q3selt36e3wqy"
     };
 
     const userAuth = await authByTextile(keyInfo);
@@ -55,6 +65,7 @@ export const getLocalThreadId = async (client)=>{
         }catch (e) {
             console.log(e)
             if(e.toString().indexOf("Thread") !==-1 && e.toString().indexOf("found") !==-1){
+                console.log("create")
                 const newDbThread = await client.newDB(undefined, C.DB.THREAD_NAME)
                 localThreadId = newDbThread.toString();
             }

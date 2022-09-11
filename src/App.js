@@ -69,7 +69,6 @@ function App() {
         if(isConnected){
             if(!identity){
                 const hash = utils.keccak256(address);
-                console.log(hash)
                 const array = hash
                     // @ts-ignore
                     .replace('0x', '')
